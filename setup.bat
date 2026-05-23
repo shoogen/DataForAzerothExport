@@ -1,0 +1,2 @@
+echo. >> "C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\AllTheThings\src\Cache.lua"
+echo ATT_CURRENT_CACHE = currentCache >> "C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\AllTheThings\src\Cache.lua"

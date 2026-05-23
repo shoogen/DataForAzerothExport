@@ -1,0 +1,6 @@
+## Title: DataForAzerothExport
+## Author: shoogen
+## Interface: 120005
+## SavedVariables: DFA_EXPORT
+
+DataForAzerothExport.lua
