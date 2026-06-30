@@ -1,6 +1,6 @@
 local FIELDS = {
-    sourceID = {},
-    illusionID = {},
+    sourceID = { collectible = true },
+    illusionID = { collectible = true },
     decorID = {},
     questID = { itemID = true, mountmodID = true },
     recipeID = { itemID = true },
@@ -24,17 +24,17 @@ function bubble(table, field)
     end
 end
 
--- helper function to only export non-collectible status
-function collectible(table)
-    if bubble(table, "collectible") == false then
-        return false
-    end
-end
-
 -- helper function to decide which fields to export
 function checkfield(category, table, field)
     if FIELDS[category][field] then
-        return bubble(table, field)
+        return table[field]
+    end
+end
+
+-- helper function to only mark false values, leave everything else blank
+function iffalse(value)
+    if value == false then
+        return false
     end
 end
 
@@ -69,7 +69,7 @@ SlashCmdList.DFAEXPORT = function(msg)
             for idx, item in ipairs(cache[id]) do
                 --DevTools_Dump(item)
                 -- TODO Export category name
-                table.insert(DFA_EXPORT[category], { id = id, itemID = checkfield(category, item, "itemID"), mountmodID = checkfield(category, item, "mountmodID"), u = bubble(item, "u"), b = bubble(item, "b"), rwp = bubble(item, "rwp"), collectible = collectible(item) })
+                table.insert(DFA_EXPORT[category], { id = id, itemID = checkfield(category, item, "itemID"), mountmodID = checkfield(category, item, "mountmodID"), u = bubble(item, "u"), b = bubble(item, "b"), rwp = bubble(item, "rwp"), collectible = iffalse(checkfield(category, item, "collectible")) })
             end
         end
     end
