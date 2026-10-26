@@ -16,10 +16,10 @@ jobs:
 
       - name: Run parser
         shell: pwsh
-        working-directory: .contrib/.tools
+        working-directory: .tools
         run: '& .\Parser.exe debug-nolog baseconfig="../.db/standard/.config/retail/retail.config" config="../.db/shared/.config/debug.config"'
 
       - name: Upload results
         uses: actions/upload-artifact@v6
         with:
-          path: .contrib/Debugging/**/*.json
+          path: Debugging/**/*.json
