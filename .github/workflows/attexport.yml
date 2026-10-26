@@ -18,9 +18,7 @@ jobs:
         working-directory: .contrib/.tools
         run: '& .\Parser.exe debug-nolog baseconfig="../.db/standard/.config/retail/retail.config" config="../.db/shared/.config/debug.config"'
 
-      - name: List output files
-        shell: pwsh
-        working-directory: .
-        run: |
-          Get-ChildItem . -Recurse -File |
-            Select-Object FullName, Length
+      - name: Upload results
+        uses: actions/upload-artifact@v6
+        with:
+          path: .contrib/Debugging/**/*.json
