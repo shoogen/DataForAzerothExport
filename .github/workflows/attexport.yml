@@ -1,4 +1,4 @@
-name: Unobtainables in AllTheThings
+name: ATT Export
 
 on:
   workflow_dispatch:
@@ -17,3 +17,10 @@ jobs:
         shell: pwsh
         working-directory: .contrib/.tools
         run: '& .\Parser.exe debug-nolog baseconfig="../.db/standard/.config/retail/retail.config" config="../.db/shared/.config/debug.config"'
+
+      - name: List output files
+        shell: pwsh
+        working-directory: .contrib/.tools
+        run: |
+          Get-ChildItem . -Recurse -File |
+            Select-Object FullName, Length
