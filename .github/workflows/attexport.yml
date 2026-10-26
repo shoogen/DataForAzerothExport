@@ -12,6 +12,7 @@ jobs:
         with:
           repository: ATTWoWAddon/AllTheThings
           ref: master
+          path: .contrib
 
       - name: Run parser
         shell: pwsh
