@@ -12,14 +12,16 @@ jobs:
         with:
           repository: ATTWoWAddon/AllTheThings
           ref: master
-          path: .contrib
+          path: att-repo
+          sparse-checkout: /.contrib/**
+          sparse-checkout-cone-mode: false
 
       - name: Run parser
         shell: pwsh
-        working-directory: .tools
+        working-directory: att-repo/.contrib/.tools
         run: '& .\Parser.exe debug-nolog baseconfig="../.db/standard/.config/retail/retail.config" config="../.db/shared/.config/debug.config"'
 
       - name: Upload results
         uses: actions/upload-artifact@v6
         with:
-          path: Debugging/**/*.json
+          path: att-repo/.contrib/Debugging/**/*.json
