@@ -1,0 +1,19 @@
+name: Unobtainables in AllTheThings
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          repository: ATTWoWAddon/AllTheThings
+          ref: master
+
+      - name: Run parser
+        shell: pwsh
+        working-directory: .contrib/.tools
+        run: '& .\Parser.exe debug-nolog baseconfig="../.db/standard/.config/retail/retail.config" config="../.db/shared/.config/debug.config"'
