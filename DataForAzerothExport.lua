@@ -62,11 +62,13 @@ SlashCmdList.DFAEXPORT = function(msg)
     DFA_EXPORT = {}
 
     for category, _ in pairs(FIELDS) do
-        DFA_EXPORT[category] = {}
-
         local cache = ATT_CURRENT_CACHE[category]
         for id, _ in pairs(cache) do
             for idx, item in ipairs(cache[id]) do
+                if DFA_EXPORT[category] == nil then
+                    DFA_EXPORT[category] = {}
+                end
+
                 --DevTools_Dump(item)
                 -- TODO Export category name
                 table.insert(DFA_EXPORT[category], { id = id, itemID = checkfield(category, item, "itemID"), mountmodID = checkfield(category, item, "mountmodID"), u = bubble(item, "u"), b = bubble(item, "b"), rwp = bubble(item, "rwp"), collectible = iffalse(checkfield(category, item, "collectible")) })
